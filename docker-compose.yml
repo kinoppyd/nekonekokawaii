@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:13.1
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: nekonekokawaii
+      POSTGRES_USER: nekonekokawaii
+      POSTGRES_DB: nekonekokawaii_development
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+        - ./tmp/pgdata:/var/lib/postgresql/data/pgdata
