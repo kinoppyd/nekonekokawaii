@@ -10,7 +10,7 @@
   </head>
 
   <body style="margin: 0px">
-    <%= react_component("atoms/Header/Header") %>
+    <%= react_component("organisms/Header", {session: @current_user ? @current_user : nil}) %>
     <%= yield %>
   </body>
 </html>

@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  before_action :current_user
+  before_action :make_sure_logged_in, only: [:create]
+
   def index
     @posts = Post.all.order(created_at: :desc)
   end

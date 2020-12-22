@@ -4,12 +4,14 @@ import { Input, PrimaryButton, Textarea } from 'smarthr-ui'
 
 import Post, { PostProps } from '../../organisms/Post'
 import { createPost } from '../../../../api/posts'
+import { Session } from '../../../../interfaces/session'
 
 export interface PostsTemplateProps {
   posts: PostProps[]
+  session?: Session
 }
 
-const PostsTemplate: React.FC<PostsTemplateProps> = ({posts}) => {
+const PostsTemplate: React.FC<PostsTemplateProps> = ({posts, session}) => {
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
 
@@ -20,19 +22,23 @@ const PostsTemplate: React.FC<PostsTemplateProps> = ({posts}) => {
 
   return(
     <Content>
-      <List>
-        <li>
-          <p>タイトル</p>
-          <Input type="text" onChange={(e) => setTitle(e.target.value)}/>
-        </li>
-        <li>
-          <p>本文</p>
-          <Textarea onChange={(e) => setBody(e.target.value)}/>
-        </li>
-        <li>
-          <PrimaryButton onClick={handleSubmit}>submit</PrimaryButton>
-        </li>
-      </List>
+      {
+        session
+          ? <List>
+            <li>
+              <p>タイトル</p>
+              <Input type="text" onChange={(e) => setTitle(e.target.value)} />
+            </li>
+            <li>
+              <p>本文</p>
+              <Textarea onChange={(e) => setBody(e.target.value)} />
+            </li>
+            <li>
+              <PrimaryButton onClick={handleSubmit}>submit</PrimaryButton>
+            </li>
+          </List>
+          : null
+      }
       {posts.map(post => (
         <Post {...post} />
       ))}
