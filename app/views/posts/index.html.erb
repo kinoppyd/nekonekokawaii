@@ -1,1 +1,7 @@
-<%= react_component("templates/Posts/Index", { posts: @posts, session: @current_user }) %>
+<%= react_component(
+  "templates/Posts/Index",
+  {
+    posts: @posts.map { |post| post.pictures.attached? ? post.attributes.merge({picture: url_for(post.pictures.first)}) : post },
+    session: @current_user
+  })
+%>
