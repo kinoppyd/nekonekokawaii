@@ -16,7 +16,7 @@ const Post: React.FC<PostProps> = ({title, body, picture}) => {
     <Base>
       <Title type='blockTitle' tag='h1'>{title}</Title>
       <div>{body}</div>
-      { picture ? <div><img src={picture} /></div> : null }
+      { picture ? <div><Pic src={picture} /></div> : null }
     </Base>
   )
 }
@@ -25,5 +25,8 @@ const Post: React.FC<PostProps> = ({title, body, picture}) => {
 const Title = styled(Heading)`
   background:linear-gradient(transparent 80%, #00C4CC 0%);
   margin-bottom: 32px;
+`
+const Pic = styled.img`
+  width: 100%;
 `
 export default Post
